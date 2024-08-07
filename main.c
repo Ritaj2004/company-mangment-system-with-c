@@ -29,7 +29,39 @@ void count_of_employee(Employee employees[], char *empcount, department departme
 void interface(char *choice);
 //======FUNCTIONS======
 //======OWNER=========
-
+void owner(Employee employees[],char *empcount,department departments[],char *departcount,char *mancount) {
+	department depart;
+	char check = 0;
+    strcpy(depart.name, "Royal fam");//string copy
+	printf("Enter name of OWNER: ");
+	scanf(" %[^\n]", depart.emp.name);
+	getchar();
+	printf("Enter address: ");
+	scanf(" %[^\n]", depart.emp.address);
+	getchar();
+	printf("Enter phone number :");
+	scanf("%s",depart.emp.phone);
+	strcpy(depart.emp.employeeType, "OWNER");//string copy
+	strcpy(depart.emp.department, depart.name);
+	check=0;
+    depart.emp.salary=0;
+	do { //check the age is positive
+		printf("Enter the age :");
+		scanf("%d",&depart.emp.age);
+		if(depart.emp.age<=16 || depart.emp.age>60) {
+			printf("make the age from 17 to 60 \n");
+			check=1;
+		} else {
+			check=0;
+		}
+	} while(check);
+	depart.emp.id=*empcount;
+	employees[*empcount]=depart.emp;
+	departments[*departcount]=depart;
+	(*empcount)++;
+	(*departcount)++;
+	(*mancount)++;
+}
 //start add new employee
 void AddNewEmployee(Employee employees[], char *empcount, department departments[], char *departcount) {
 	char num = 0;
