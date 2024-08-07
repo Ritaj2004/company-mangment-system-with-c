@@ -1,21 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 //structs
-typedef struct {
-	unsigned char id;
-	char employeeType[10];
-	char phone[11];
-	char name[20];
-	char address[10];
-	float salary;
-    char department[10];
-	char age;
-} Employee;
 
-typedef struct {
-	char name[20];
-	Employee emp;
-} department;
 //======prototypes=====
 void newdepart(Employee employees[], char *empcount, department departments[], char *departcount, char *mancount);
 void AddNewEmployee(Employee employees[], char *empcount, department departments[], char *departcount);
