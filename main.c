@@ -313,7 +313,15 @@ void searchByDep(Employee employees[],char *empcount,char *departcount,departmen
 	}
 }
 //=======start company count ====
-
+void compcounter(char *empcount,char *mancount) {
+	if((*empcount)==0) {
+		printf("the company is empty \n");
+	} else if((*empcount)-(*mancount)==0) {
+		printf("there is only %d managers and no employee\n",*mancount);
+	} else {
+		printf("we have in our company :%d member \n %d managers and %d employee\n",*empcount,*mancount,*empcount-*mancount);
+	}
+}
 //============ start edit =========
 void edit_employe_information(Employee employees[],char *empcount){
     char empName[30];
