@@ -16,7 +16,17 @@ typedef struct {
 	char name[20];
 	Employee emp;
 } department;
-
+//======prototypes=====
+void newdepart(Employee employees[], char *empcount, department departments[], char *departcount, char *mancount);
+void AddNewEmployee(Employee employees[], char *empcount, department departments[], char *departcount);
+void dispemp(Employee employees[], char *empcount);
+void searchByID(Employee employees[], char *empcount);
+void dispHighestSalary(Employee employees[], char *empcount);
+void searchByDep(Employee employees[], char *empcount, char *departcount, department departments[]);
+void compcounter(char *empcount, char *mancount);
+void edit_employe_information(Employee employees[], char *empcount);
+void count_of_employee(Employee employees[], char *empcount, department departments[], char *departcount);
+void interface(char *choice);
 //======FUNCTIONS======
 //======OWNER=========
 void owner(Employee employees[],char *empcount,department departments[],char *departcount,char *mancount) {
@@ -54,63 +64,7 @@ void owner(Employee employees[],char *empcount,department departments[],char *de
 }
 
 //start newdepartment
-void newdepart(Employee employees[],char *empcount,department departments[],char *departcount,char *mancount) {
-	department depart;
-	char check = 0;
-	do {//check this is new department
-		printf("Enter the department :");
-		scanf("%s",depart.name);
-		getchar();
-		// Check if the department exists
-		for (int i = 0; i < *departcount; i++) {
-			if (strcmp(departments[i].name, depart.name) == 0) {
-				check = 1;
-				printf("this department is exists enter new one\n");
-				break;
-			} else {
-				check = 0;
-			}
-		}
-	} while (check);
-	printf("Enter name of manager: ");
-	scanf(" %[^\n]", depart.emp.name);
-	getchar();
-	printf("Enter address: ");
-	scanf(" %[^\n]", depart.emp.address);
-	getchar();
-	printf("Enter phone number :");
-	scanf("%s",depart.emp.phone);
-	strcpy(depart.emp.employeeType, "Manager");//string copy
-	strcpy(depart.emp.department, depart.name);
-	check=0;
-	do { //check the salary is positive
-		printf("Enter the salary :");
-		scanf("%f",&depart.emp.salary);
-		if(depart.emp.salary<=0) {
-			printf("enter positive number\n");
-			check=1;
-		} else {
-			check=0;
-		}
-	} while(check);
 
-	do { //check the age is positive
-		printf("Enter the age :");
-		scanf("%d",&depart.emp.age);
-		if(depart.emp.age<=16 || depart.emp.age>60) {
-			printf("make the age from 17 to 60 \n");
-			check=1;
-		} else {
-			check=0;
-		}
-	} while(check);
-	depart.emp.id=*empcount;
-	employees[*empcount]=depart.emp;
-	departments[*departcount]=depart;
-	(*empcount)++;
-	(*departcount)++;
-	(*mancount)++;
-}
 //END newdepartment
 //start add new employee
 void AddNewEmployee(Employee employees[], char *empcount, department departments[], char *departcount) {
