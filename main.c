@@ -29,40 +29,76 @@ void count_of_employee(Employee employees[], char *empcount, department departme
 void interface(char *choice);
 //======FUNCTIONS======
 //======OWNER=========
-void owner(Employee employees[],char *empcount,department departments[],char *departcount,char *mancount) {
-	department depart;
-	char check = 0;
-    strcpy(depart.name, "Royal fam");//string copy
-	printf("Enter name of OWNER: ");
-	scanf(" %[^\n]", depart.emp.name);
-	getchar();
-	printf("Enter address: ");
-	scanf(" %[^\n]", depart.emp.address);
-	getchar();
-	printf("Enter phone number :");
-	scanf("%s",depart.emp.phone);
-	strcpy(depart.emp.employeeType, "OWNER");//string copy
-	strcpy(depart.emp.department, depart.name);
-	check=0;
-    depart.emp.salary=0;
-	do { //check the age is positive
-		printf("Enter the age :");
-		scanf("%d",&depart.emp.age);
-		if(depart.emp.age<=16 || depart.emp.age>60) {
-			printf("make the age from 17 to 60 \n");
-			check=1;
-		} else {
-			check=0;
-		}
-	} while(check);
-	depart.emp.id=*empcount;
-	employees[*empcount]=depart.emp;
-	departments[*departcount]=depart;
-	(*empcount)++;
-	(*departcount)++;
-	(*mancount)++;
-}
 
+//start add new employee
+void AddNewEmployee(Employee employees[], char *empcount, department departments[], char *departcount) {
+	char num = 0;
+	if(*departcount==1) {
+		printf("\nplease add department first");
+	}
+	else {
+		printf("\nEnter number of Employees you want to add :");
+		scanf("%d", &num);
+		if(num<=0) {
+			printf("put positive number in next time\n");
+		} else {
+			Employee emp;
+			for (int i = 0; i < num; i++) {
+				char check = 1;
+				do {
+					printf("Enter the department: ");
+					scanf("%s", emp.department);
+					check = 1;
+					for (int i = 0; i < *departcount; i++) {
+						if (strcmp(departments[i].name, emp.department) == 0) {
+							check = 0;  // Department found, set check to 0
+							break;
+						}
+					}
+					if (check == 1) {
+						printf("Enter an existing department\n");
+					}
+				} while (check);
+				printf("Enter name of Employee: ");
+				scanf(" %[^\n]",emp.name);
+				getchar();
+				printf("Enter address: ");
+				scanf(" %[^\n]",emp.address);
+				getchar();
+				printf("Enter phone number :");
+				scanf("%s", emp.phone);
+				strcpy(emp.employeeType, "Employee");  // string copy
+
+				check=0;
+				do { //check the salary is positive
+					printf("Enter the salary :");
+					scanf("%f",&emp.salary);
+					if(emp.salary<=0) {
+						printf("enter positive number\n");
+						check=1;
+					} else {
+						check=0;
+					}
+				} while(check);
+
+				do { //check the age is positive
+					printf("Enter the age :");
+					scanf("%d",&emp.age);
+					if(emp.age<=16 ||emp.age>60) {
+						printf("make the age from 16 to 60 \n");
+						check=1;
+					} else {
+						check=0;
+					}
+				} while(check);
+				emp.id = *empcount;
+				employees[*empcount] = emp;
+				(*empcount)++;
+				printf("==================\n");
+			}
+		}
+	}
+}
 //start newdepartment
 void newdepart(Employee employees[],char *empcount,department departments[],char *departcount,char *mancount) {
 	department depart;
