@@ -16,17 +16,7 @@ typedef struct {
 	char name[20];
 	Employee emp;
 } department;
-//======prototypes=====
-void newdepart(Employee employees[], char *empcount, department departments[], char *departcount, char *mancount);
-void AddNewEmployee(Employee employees[], char *empcount, department departments[], char *departcount);
-void dispemp(Employee employees[], char *empcount);
-void searchByID(Employee employees[], char *empcount);
-void dispHighestSalary(Employee employees[], char *empcount);
-void searchByDep(Employee employees[], char *empcount, char *departcount, department departments[]);
-void compcounter(char *empcount, char *mancount);
-void edit_employe_information(Employee employees[], char *empcount);
-void count_of_employee(Employee employees[], char *empcount, department departments[], char *departcount);
-void interface(char *choice);
+
 //======FUNCTIONS======
 //======OWNER=========
 void owner(Employee employees[],char *empcount,department departments[],char *departcount,char *mancount) {
