@@ -323,7 +323,135 @@ void compcounter(char *empcount,char *mancount) {
 	}
 }
 //============ start edit =========
+void edit_employe_information(Employee employees[],char *empcount){
+    char empName[30];
+    unsigned char empID;
+    unsigned char choiceEDIT;
+    char check=0;
+    int found = 0;  // Variable to track if a valid ID was found
 
+    if (*empcount != 1) {
+
+        getchar();
+        printf("Enter the ID of the employee: ");
+        scanf("%d", &empID);
+
+        for (int i = 0; i <*empcount; i++) {
+            if (empID == 0) {
+                printf("Can't edit owner\n");
+                found = 1;
+                break;
+            } else if (empID == employees[i].id) {
+                found = 1;
+                printf("\t\t\t------------------------------------------------------------------\n");
+                printf("\t\t\t\t\tEdit information of employee\n");
+                printf("\t\t\t------------------------------------------------------------------\n");
+                printf("\t\t\t| 1. Edit name of employee\t\t\t\t\t  |\n");
+                printf("\t\t\t| 2. Edit address of employee\t\t\t\t\t  |\n");
+                printf("\t\t\t| 3. Edit the phone number of employee\t\t\t\t  |\n");
+                printf("\t\t\t| 4. Edit salary of employee\t\t\t\t\t  |\n");
+                printf("\t\t\t| 5. Edit age of employee \t\t\t\t\t  |\n");
+                printf("\t\t\t| 6. Exit \t\t\t\t\t\t\t  |\n");
+                printf("\t\t\t ------------------------------------------------------------------");
+                printf("\n\t\t\tEnter your choice: ");
+                scanf("%d", &choiceEDIT);
+
+                switch (choiceEDIT) {
+                    case 1:
+                        printf("Enter the new name: ");
+                        scanf(" %[^\n]", employees[i].name);
+                        break;
+                    case 2:
+                        getchar();
+                        printf("Enter the new address: ");
+                        scanf(" %[^\n]", employees[i].address);
+                        break;
+                    case 3:
+                        getchar();
+                        printf("Enter the new phone number :");
+                        scanf("%s", employees[i].phone);
+                        break;
+                    case 4:
+                        do { //check the salary is positive
+                            printf("Enter the new salary :");
+                            scanf("%f", &employees[i].salary);
+                            if (employees[i].salary <= 0) {
+                                printf("enter positive number\n");
+                                check = 1;
+                            } else {
+                                check = 0;
+                            }
+                        } while (check);
+                        break;
+                    case 5:
+                        do { //check the age is positive
+                            printf("Enter the age :\n");
+                            scanf("%d", &employees[i].age);
+                            if (employees[i].age <= 16 || employees[i].age > 60) {
+                                printf("make the age from 17 to 60 \n");
+                                check = 1;
+                            } else {
+                                check = 0;
+                            }
+                        } while (check);
+                        break;
+                    case 6:
+                        return;
+                    default:
+                        printf("invalid number\n");
+                        break;
+                }
+                break;  // Exit the loop once the employee is found and edited
+            }
+        }
+        if (!found) {  // If no matching ID was found
+            printf("invalid Id\n");
+        }
+    } else {
+        printf("No employees for this company\n");
+    }
+}
+
+
+//start display count of employee
+void count_of_employee(Employee employees[], char * empcount, department departments[], char * departcount) {
+    if (*empcount == 0) {
+        printf("No employees or departments to count.\n");
+    }else{
+
+    for (int i = 0; i < *departcount; i++) {
+        int count = 0;
+        for (int j = 0; j < *empcount; j++) {
+            if (strcmp(employees[j].department, departments[i].name) == 0) {
+                count++;
+            }
+        }
+        printf("Department: %s, Number of employees: %d\n", departments[i].name, count);
+    }
+}
+}
+
+
+//=======end company count ====
+//====start interface====
+void interface(char *choice) {
+	printf("\t\t\t------------------------------------------------------------------\n");
+	printf("\t\t\t\t\tWELCOME TO COMPANY MANAGEMENT SYSTEM\n");
+	printf("\t\t\t------------------------------------------------------------------\n");
+	printf("\t\t\t| 1. Enter new employee information\t\t\t\t  |\n");
+	printf("\t\t\t| 2. Display all employee information\t\t\t\t  |\n");
+	printf("\t\t\t| 3. Search employee by ID\t\t\t\t\t  |\n");
+	printf("\t\t\t| 4. Display employee with highest salary\t\t\t  |\n");
+	printf("\t\t\t| 5. Add new department and his manager\t\t\t\t  |\n");
+	printf("\t\t\t| 6. Search by department and display manager and employees\t  |\n");
+	printf("\t\t\t| 7. Count number of managers and employees in the company\t  |\n");
+	printf("\t\t\t| 8. Count number of employees in each department\t\t  |\n");
+	printf("\t\t\t| 9. Edit employee information\t\t\t\t\t  |\n");
+	printf("\t\t\t| 10. Exit\t\t\t\t\t\t\t  |\n");
+	printf("\t\t\t ------------------------------------------------------------------");
+	printf("\n\t\t\tEnter your choice: ");
+	scanf("%d",&*choice);
+}
 //====end interface====
 //===============int main===============
 int main() {
