@@ -1,5 +1,5 @@
 # Company Management System
-
+![interface](https://github.com/user-attachments/assets/3c4760d1-3466-423c-8845-56c769763627)
 ## Description
 The Company Management System is a C program designed to help manage employee information within a company. It provides various functionalities for adding, displaying, and manipulating employee data across different departments.
 
